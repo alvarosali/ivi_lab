@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 
 /* Función de renderizado */
 void render () {
@@ -11,10 +11,13 @@ void render () {
   glTranslatef(0.0, 0.0, -4.0);
 
   /* Renderiza un triángulo blanco */
-  glColor3f(1.0, 1.0, 1.0);
+
   glBegin(GL_TRIANGLES);
+  glColor3f(1, 0, 0);
   glVertex3f(0.0, 1.0, 0.0);
+  glColor3f(0, 1, 0);
   glVertex3f(-1.0, -1.0, 0.0);
+  glColor3f(0, 0, 1);
   glVertex3f(1.0, -1.0, 0.0);
   glEnd();
 

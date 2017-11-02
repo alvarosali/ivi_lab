@@ -4,7 +4,8 @@ DIRHEA := include/
 DIRSRC := src/
 
 CFLAGS := -I$(DIRHEA) -c -Wall -ansi
-LDFLAGS := -lglut -lGLU -lGL
+LDFLAGS := -framework GLUT -framework OpenGL -framework Cocoa
+
 CC := gcc
 
 all: dirs helloOpenGL test
@@ -12,8 +13,9 @@ all: dirs helloOpenGL test
 dirs:
 	mkdir -p $(DIROBJ) $(DIREXE)
 
-helloOpenGL: $(DIROBJ)helloOpenGL.o 
-	$(CC) -o $(DIREXE)$@ $^ $(LDFLAGS)
+helloOpenGL: 
+	$(CC) -o helloOpenGL $(DIRSRC)helloOpenGL.c $^ $(LDFLAGS)
+	./$(DIRSRC)helloOpenGL
 
 test: $(DIROBJ)test.o 
 	$(CC) -o $(DIREXE)$@ $^ $(LDFLAGS)
