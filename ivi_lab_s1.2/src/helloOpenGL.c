@@ -3,6 +3,16 @@
 
 /* Función de renderizado */
 
+static GLint color = 1;
+
+void keyboard (unsigned char key, int x, int y) {
+
+  if(key == 'c'){ 
+      color = !color; 
+      glutPostRedisplay();
+  }
+}
+
 void render () {
   /* Limpieza de buffers */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -14,13 +24,19 @@ void render () {
   /* Renderiza un triángulo blanco */
 
   glBegin(GL_TRIANGLES);
-
-  glColor3f(1, 0, 0);
-  glVertex3f(0.0, 1.0, 0.0);
-  glColor3f(0, 1, 0);
-  glVertex3f(-1.0, -1.0, 0.0);
-  glColor3f(0, 0, 1);
-  glVertex3f(1.0, -1.0, 0.0);
+  if(color){
+    glColor3f(1, 0, 0);
+    glVertex3f(0.0, 1.0, 0.0);
+    glColor3f(0, 1, 0);
+    glVertex3f(-1.0, -1.0, 0.0);
+    glColor3f(0, 0, 1);
+    glVertex3f(1.0, -1.0, 0.0);
+  } else {
+    glColor3f(1, 1, 1);
+    glVertex3f(0.0, 1.0, 0.0);
+    glVertex3f(-1.0, -1.0, 0.0);
+    glVertex3f(1.0, -1.0, 0.0);
+  }
   glEnd();
 
   /* Intercambio de buffers */
@@ -59,6 +75,7 @@ int main(int argc, char *argv[]) {
   /* Registro de funciones de retrollamada */
   glutDisplayFunc(render);
   glutReshapeFunc(resize);
+  glutKeyboardFunc(keyboard);
   
 
   /* Bucle de renderizado */
