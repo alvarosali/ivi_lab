@@ -14,8 +14,8 @@ dirs:
 	mkdir -p $(DIROBJ) $(DIREXE)
 
 helloOpenGL: 
-	$(CC) -o helloOpenGL $(DIRSRC)helloOpenGL.c $^ $(LDFLAGS)
-	./$(DIRSRC)helloOpenGL
+	$(CC) -o $(DIREXE)helloOpenGL $(DIRSRC)helloOpenGL.c $^ $(LDFLAGS)
+	./$(DIREXE)helloOpenGL
 
 test: $(DIROBJ)test.o 
 	$(CC) -o $(DIREXE)$@ $^ $(LDFLAGS)
