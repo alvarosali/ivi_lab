@@ -6,7 +6,7 @@ MKDIR_P := mkdir -p
 
 CC := gcc
 CFLAGS := -I$(DIRHEA) -c -Wall -ansi
-LDLIBS := `pkg-config --libs-only-l glu` -framework OpenGL -framework Cocoa -framework GLUT
+LDLIBS := -framework OpenGL -framework Cocoa -framework GLUT
 
 all: dirs helloOpenGL tetera planetario
 

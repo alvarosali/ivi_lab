@@ -1,4 +1,7 @@
 #include <GLUT/glut.h>
+#include <stdio.h>
+
+
 
 static GLint rotate = 0;
 
@@ -18,6 +21,7 @@ void keyboard (unsigned char key, int x, int y) {
       glutIdleFunc(rotating);
   } else if(key == 's'){
       glutPostRedisplay();
+      glutIdleFunc(NULL);
   }
 }
 
@@ -31,6 +35,8 @@ void render () {
   /* Posición de la cámara virtual (position, look, up) */
   gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
   
+  glRotatef(rotate, 1, 0, 0);
+
   /* En color blanco */
   glColor3f( 1.0, 1.0, 1.0 );  
 
@@ -38,7 +44,7 @@ void render () {
 
   glutWireTeapot(1.5);
   /* Intercambio de buffers... Representation ---> Window */
-  glRotatef(rotate, 1, 0, 0);
+
   glutSwapBuffers();      
 } 
 

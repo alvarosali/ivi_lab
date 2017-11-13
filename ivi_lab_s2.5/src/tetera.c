@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <GLUT/glut.h>
+#include <stdio.h>
+
 
 static GLint xDegrees = 0;
 static GLint yDegrees = 0;
@@ -31,7 +33,7 @@ void rotate(){
       change(&yDegrees);
       break;
     case 2: 
-      change(&yDegrees);
+      change(&zDegrees);
       break;
   }
   glutPostRedisplay();
@@ -75,6 +77,10 @@ void render () {
   /* Posición de la cámara virtual (position, look, up) */
   gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
   
+  glRotatef(xDegrees, 1, 0, 0);
+  glRotatef(yDegrees, 0, 1, 0);
+  glRotatef(zDegrees, 0, 0, 1);
+
   /* En color blanco */
   glColor3f( 1.0, 1.0, 1.0 );  
 
@@ -82,9 +88,7 @@ void render () {
 
   glutWireTeapot(1.5);
   /* Intercambio de buffers... Representation ---> Window */
-  glRotatef(xDegrees, 1, 0, 0);
-  glRotatef(yDegrees, 0, 1, 0);
-  glRotatef(zDegrees, 0, 0, 1);
+
   
 
   glutSwapBuffers();      
