@@ -1,9 +1,15 @@
 #include <GLUT/glut.h>
 
 #define DIST_TIERRA 3
+#define DIST_LUNA_ROJA 1
+#define DIST_LUNA_VERDE 2
+
 
 static GLfloat tierra_rotacion = 0.0;
 static GLfloat tierra_orbita = 0.0;
+static GLfloat luna_roja_orbita = 0.0;
+static GLfloat luna_verde_orbita = 0.0;
+
 
 void render () { 
   /* Limpieza de buffers */
@@ -17,6 +23,7 @@ void render () {
   glColor3ub (255, 186, 0);
   glutWireSphere (0.6, 16, 16);
 
+
   /* Transformaciones de la tierra */
   glRotatef(tierra_orbita, 0.0, 0.0, 1.0);
   glTranslatef(DIST_TIERRA, 0.0, 0.0);
@@ -25,6 +32,29 @@ void render () {
   /* Renderiza una Tierra azul */
   glColor3ub (0, 0, 255);
   glutWireSphere (0.3, 8, 8);
+
+  glPushMatrix();
+
+  
+  /* Transformaciones de la Luna verde */
+  glRotatef(luna_verde_orbita, 0.0, 0.0, 1.0);
+  glTranslatef(DIST_LUNA_VERDE, 0.0, 0.0);
+  glRotatef(tierra_rotacion, 0.0, 0.0, 1.0);
+
+  /* Renderiza una Luna verde */
+  glColor3ub (0, 255, 0);
+  glutWireSphere (0.18, 4.8, 4.8);
+
+  glPopMatrix();
+
+
+  /* Transformaciones de la Luna roja */
+  glRotatef(luna_roja_orbita, 0.0, 0.0, 1.0);
+  glTranslatef(DIST_LUNA_ROJA, 0.0, 0.0);
+
+  /* Renderiza una Luna roja */
+  glColor3ub (255, 0, 0);
+  glutWireSphere (0.15, 4, 4);
 
   /* Intercambio de buffers... Representation ---> Window */
   glutSwapBuffers();      
@@ -46,6 +76,9 @@ void resize (int w, int h) {
 
 void update (unsigned char key, int x, int y) { 
   tierra_orbita += 0.2;
+  luna_roja_orbita += 1;
+  luna_verde_orbita += 1.5;
+
   tierra_rotacion += 5.8;
   /* Fuerza re-dibujado */
   glutPostRedisplay();
